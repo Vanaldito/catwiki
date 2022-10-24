@@ -6,3 +6,44 @@
   width: max-content;
   height: auto;
 }
+
+.header {
+  margin-top: 20px;
+  border-radius: 38px;
+  overflow: hidden;
+}
+
+.header__hero-image {
+  width: 100%;
+  height: auto;
+  background-image: url("/HeroImagesm.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.header__hero-text {
+  color: #fff;
+  width: 40%;
+  padding: 20px 25px;
+}
+
+.header__hero-text__title {
+  font-size: 16px;
+}
+
+.header__hero-text__description {
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.header__search-button {
+  padding: 7px 13px;
+  font-size: 14px;
+  color: #291507;
+  background-color: #fff;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
