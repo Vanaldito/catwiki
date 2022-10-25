@@ -26,6 +26,15 @@ export default function HomePage() {
             </button>
           </div>
         </div>
+        <div className="header__most-searched-breeds">
+          <h2 className="header__most-searched-breeds__title">
+            Most Searched Breeds
+          </h2>
+          <p className="header__most-searched-breeds__discover">
+            66+ Breeds For you to discover
+          </p>
+          <div className="header__most-searched-breeds__breeds"></div>
+        </div>
       </header>
     </main>
   );

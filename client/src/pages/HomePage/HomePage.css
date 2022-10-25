@@ -47,3 +47,32 @@
   cursor: pointer;
   margin-top: 20px;
 }
+
+.header__most-searched-breeds {
+  padding: 20px 25px;
+  background-color: #e3e1dc;
+}
+
+.header__most-searched-breeds__title {
+  font-size: 16px;
+  font-weight: normal;
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.header__most-searched-breeds__title::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 50px;
+  height: 5px;
+  border-radius: 5px;
+  background-color: #4d270c;
+  bottom: -8px;
+}
+
+.header__most-searched-breeds__discover {
+  font-weight: bold;
+  font-size: 20px;
+  max-width: 200px;
+}
