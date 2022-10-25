@@ -1,4 +1,4 @@
-import { Header, Navbar } from "../../components";
+import { Footer, Header, Navbar } from "../../components";
 
 import "./HomePage.css";
 
@@ -24,6 +24,7 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+      <Footer />
     </main>
   );
 }
