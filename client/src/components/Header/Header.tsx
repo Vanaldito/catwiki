@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { SearchIcon } from "../Icons";
 import { Logo } from "../Logo";
 import { SearchBar } from "../SearchBar";
 
@@ -24,7 +25,7 @@ export default function Header() {
               type="button"
               onClick={() => setDisplaySearchBar(true)}
             >
-              Search
+              Search <SearchIcon />
             </button>
           </div>
         </div>

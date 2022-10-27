@@ -41,6 +41,9 @@
   border: none;
   cursor: pointer;
   margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .header__most-searched-breeds {

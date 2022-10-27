@@ -1,3 +1,4 @@
+import { SearchIcon } from "../Icons";
 import "./SearchBar.css";
 
 interface SearchBarProps {
@@ -20,7 +21,7 @@ export default function SearchBar({ closeBar }: SearchBarProps) {
           placeholder="Enter your breed"
         />
         <button className="search-bar__search-button" type="submit">
-          Search
+          <SearchIcon />
         </button>
         <div className="search-bar__recommendations"></div>
       </form>
