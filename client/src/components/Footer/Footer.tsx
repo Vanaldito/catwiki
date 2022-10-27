@@ -5,7 +5,7 @@ import "./Footer.css";
 export default function Footer() {
   return (
     <footer className="footer">
-      <Logo color="white" />
+      <Logo size="sm" color="white" />
       <div className="footer__bottom">
         <span className="footer__copy">&copy;</span> created by
         <a

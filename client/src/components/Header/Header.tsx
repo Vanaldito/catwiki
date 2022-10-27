@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Logo } from "../Logo";
 import { SearchBar } from "../SearchBar";
 
 import "./Header.css";
@@ -12,6 +13,9 @@ export default function Header() {
         <div className="header__hero-image">
           <div className="header__hero-text">
             <h1 className="header__hero-text__title">CatWiki</h1>
+            <span className="header__hero-text__logo">
+              <Logo size="lg" color="white" />
+            </span>
             <p className="header__hero-text__description">
               Get to know more about your cat breed
             </p>

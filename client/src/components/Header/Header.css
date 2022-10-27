@@ -23,6 +23,10 @@
   font-size: 16px;
 }
 
+.header__hero-text__logo {
+  display: none;
+}
+
 .header__hero-text__description {
   font-size: 13px;
   margin-top: 10px;
@@ -66,4 +70,66 @@
   font-weight: bold;
   font-size: 20px;
   max-width: 200px;
+}
+
+@media (min-width: 500px) {
+  .header__hero-text {
+    padding: 35px 30px;
+  }
+
+  .header__hero-text__title {
+    font-size: 20px;
+  }
+
+  .header__hero-text__description {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 700px) {
+  .header__hero-image {
+    background-image: url("/HeroImagemd.png");
+  }
+}
+
+@media (min-width: 1000px) {
+  .header__hero-image {
+    background-image: url("/HeroImagelg.png");
+  }
+
+  .header__hero-text {
+    padding: 150px 108px;
+    width: 370px;
+  }
+
+  .header__hero-text__title {
+    display: none;
+  }
+
+  .header__hero-text__logo {
+    display: block;
+  }
+
+  .header__hero-text__description {
+    font-size: 28px;
+  }
+
+  .header__search-button {
+    padding: 23px 26px;
+    font-size: 20px;
+    margin-top: 50px;
+  }
+
+  .header__most-searched-breeds {
+    padding: 40px 108px;
+  }
+
+  .header__most-searched-breeds__title {
+    font-size: 18px;
+  }
+
+  .header__most-searched-breeds__discover {
+    font-size: 48px;
+    max-width: 500px;
+  }
 }

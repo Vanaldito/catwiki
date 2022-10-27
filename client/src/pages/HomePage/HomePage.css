@@ -49,3 +49,9 @@
   width: 70%;
   justify-self: right;
 }
+
+@media (min-width: 700px) {
+  .home-page {
+    padding: 26px 96px 0;
+  }
+}
