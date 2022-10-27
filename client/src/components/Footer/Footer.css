@@ -22,3 +22,13 @@
   font-weight: bold;
   margin: 0 5px;
 }
+
+@media (min-width: 1000px) {
+  .footer {
+    display: flex;
+    padding: 20px 40px;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+  }
+}
