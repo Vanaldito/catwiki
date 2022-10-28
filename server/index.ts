@@ -1,7 +1,8 @@
 import express from "express";
 import path from "path";
-
 import dotenv from "dotenv";
+
+import { apiRouter } from "./src/routes";
 
 async function main() {
   const app = express();
@@ -11,6 +12,8 @@ async function main() {
   if (process.env.VEREX_ENV === "production") {
     app.use("/", express.static(path.join(__dirname, "static")));
   }
+
+  app.use("/api/v1", apiRouter);
 
   app.get("/", (_req, res) => {
     res.sendFile(path.join(__dirname, process.env.VEREX_HTML_PATH as string));
