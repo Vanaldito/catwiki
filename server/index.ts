@@ -1,8 +1,12 @@
 import express from "express";
 import path from "path";
 
+import dotenv from "dotenv";
+
 async function main() {
   const app = express();
+
+  dotenv.config({ path: ".env.local" });
 
   if (process.env.VEREX_ENV === "production") {
     app.use("/", express.static(path.join(__dirname, "static")));
