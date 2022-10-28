@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { SearchIcon } from "../Icons";
+import { CloseIcon, SearchIcon } from "../Icons";
 import "./SearchBar.css";
 
 interface SearchBarProps {
@@ -18,7 +18,7 @@ export default function SearchBar({ closeBar }: SearchBarProps) {
   return (
     <div className="search-bar">
       <button onClick={closeBar} className="search-bar__close-button">
-        Close
+        <CloseIcon />
       </button>
       <form
         className="search-bar__form"
