@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { SearchIcon } from "../Icons";
 import "./SearchBar.css";
 
@@ -6,6 +7,14 @@ interface SearchBarProps {
 }
 
 export default function SearchBar({ closeBar }: SearchBarProps) {
+  const field = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (window.innerWidth < 1000) {
+      field.current?.focus();
+    }
+  });
+
   return (
     <div className="search-bar">
       <button onClick={closeBar} className="search-bar__close-button">
@@ -16,6 +25,7 @@ export default function SearchBar({ closeBar }: SearchBarProps) {
         onSubmit={event => event.preventDefault()}
       >
         <input
+          ref={field}
           className="search-bar__field"
           type="text"
           placeholder="Enter your breed"

@@ -20,13 +20,19 @@ export default function Header() {
             <p className="header__hero-text__description">
               Get to know more about your cat breed
             </p>
-            <button
-              className="header__search-button"
-              type="button"
-              onClick={() => setDisplaySearchBar(true)}
+            <form
+              className="header__search-form"
+              onSubmit={event => event.preventDefault()}
             >
-              Search <SearchIcon />
-            </button>
+              <input
+                className="header__search-field"
+                placeholder="Enter your breed"
+                onClick={() => setDisplaySearchBar(true)}
+              />
+              <button className="header__search-button" type="submit">
+                <SearchIcon />
+              </button>
+            </form>
           </div>
         </div>
         <div className="header__most-searched-breeds">

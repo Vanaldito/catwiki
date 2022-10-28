@@ -45,3 +45,9 @@
   padding: 0 15px;
   cursor: pointer;
 }
+
+@media (min-width: 1000px) {
+  .search-bar {
+    display: none;
+  }
+}
