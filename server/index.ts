@@ -7,7 +7,7 @@ import { apiRouter } from "./src/routes";
 async function main() {
   const app = express();
 
-  dotenv.config({ path: ".env.local" });
+  dotenv.config({ path: path.join(__dirname, ".env.local") });
 
   if (process.env.VEREX_ENV === "production") {
     app.use("/", express.static(path.join(__dirname, "static")));
