@@ -46,6 +46,20 @@
   cursor: pointer;
 }
 
+.search-bar__suggestions {
+  max-height: 200px;
+  list-style: none;
+  overflow: auto;
+  padding: 10px 15px;
+  box-shadow: 0 2px 6px #0000001f;
+  border-radius: 12px;
+}
+
+.search-bar__suggestion {
+  /* display: flex; */
+  padding: 5px;
+}
+
 @media (min-width: 1000px) {
   .search-bar {
     display: none;

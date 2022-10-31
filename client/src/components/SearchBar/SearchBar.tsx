@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useBreedSuggestions } from "../../hooks";
 import { CloseIcon, SearchIcon } from "../Icons";
 import "./SearchBar.css";
 
@@ -7,13 +8,23 @@ interface SearchBarProps {
 }
 
 export default function SearchBar({ closeBar }: SearchBarProps) {
+  const [query, setQuery] = useState("");
+  const [suggestions, getSuggestions] = useBreedSuggestions();
+
   const field = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (window.innerWidth < 1000) {
       field.current?.focus();
     }
-  });
+  }, []);
+
+  function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
+    setQuery(event.target.value);
+    getSuggestions(event.target.value);
+  }
+
+  const thereAreSuggestions = Boolean(suggestions?.info?.length);
 
   return (
     <div className="search-bar">
@@ -29,12 +40,22 @@ export default function SearchBar({ closeBar }: SearchBarProps) {
           className="search-bar__field"
           type="text"
           placeholder="Enter your breed"
+          value={query}
+          onChange={changeHandler}
         />
         <button className="search-bar__search-button" type="submit">
           <SearchIcon />
         </button>
-        <div className="search-bar__recommendations"></div>
       </form>
+      {thereAreSuggestions && (
+        <ul className="search-bar__suggestions">
+          {suggestions?.info?.map(({ id, name }) => (
+            <li className="search-bar__suggestion" key={id}>
+              {name}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
