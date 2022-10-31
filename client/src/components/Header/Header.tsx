@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { DropdownMenu } from "../DropdownMenu";
 import { SearchIcon } from "../Icons";
 import { Logo } from "../Logo";
 import { SearchBar } from "../SearchBar";
@@ -46,7 +47,9 @@ export default function Header() {
         </div>
       </header>
       {displaySearchBar && (
-        <SearchBar closeBar={() => setDisplaySearchBar(false)} />
+        <DropdownMenu closeMenu={() => setDisplaySearchBar(false)}>
+          <SearchBar />
+        </DropdownMenu>
       )}
     </>
   );

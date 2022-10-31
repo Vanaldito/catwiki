@@ -1,13 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useBreedSuggestions } from "../../hooks";
-import { CloseIcon, SearchIcon } from "../Icons";
+import { SearchIcon } from "../Icons";
 import "./SearchBar.css";
 
-interface SearchBarProps {
-  closeBar: () => void;
-}
-
-export default function SearchBar({ closeBar }: SearchBarProps) {
+export default function SearchBar() {
   const [query, setQuery] = useState("");
   const [suggestions, getSuggestions] = useBreedSuggestions();
 
@@ -27,14 +23,8 @@ export default function SearchBar({ closeBar }: SearchBarProps) {
   const thereAreSuggestions = Boolean(suggestions?.info?.length);
 
   return (
-    <div className="search-bar">
-      <button onClick={closeBar} className="search-bar__close-button">
-        <CloseIcon />
-      </button>
-      <form
-        className="search-bar__form"
-        onSubmit={event => event.preventDefault()}
-      >
+    <>
+      <form className="search-bar" onSubmit={event => event.preventDefault()}>
         <input
           ref={field}
           className="search-bar__field"
@@ -56,6 +46,6 @@ export default function SearchBar({ closeBar }: SearchBarProps) {
           ))}
         </ul>
       )}
-    </div>
+    </>
   );
 }

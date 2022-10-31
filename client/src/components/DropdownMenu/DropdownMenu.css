@@ -1,0 +1,31 @@
+.dropdown-menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 200;
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.dropdown-menu__close-button {
+  padding: 10px;
+  background-color: #9797971a;
+  border: none;
+  margin: 0 0 0 auto;
+  display: block;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.dropdown-menu__close-button:hover {
+  background-color: #9797973a;
+}
+
+@media (min-width: 1000px) {
+  .dropdown-menu {
+    display: none;
+  }
+}
