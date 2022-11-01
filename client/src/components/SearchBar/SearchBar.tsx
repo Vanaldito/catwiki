@@ -3,14 +3,18 @@ import { useBreedSuggestions } from "../../hooks";
 import { SearchIcon } from "../Icons";
 import "./SearchBar.css";
 
-export default function SearchBar() {
+interface SearchBarProps {
+  focusOnMount: boolean;
+}
+
+export default function SearchBar({ focusOnMount }: SearchBarProps) {
   const [query, setQuery] = useState("");
   const [suggestions, getSuggestions] = useBreedSuggestions();
 
   const field = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (window.innerWidth < 1000) {
+    if (window.innerWidth < 1000 && focusOnMount) {
       field.current?.focus();
     }
   }, []);
@@ -23,7 +27,7 @@ export default function SearchBar() {
   const thereAreSuggestions = Boolean(suggestions?.info?.length);
 
   return (
-    <>
+    <div className="search-bar-container">
       <form className="search-bar" onSubmit={event => event.preventDefault()}>
         <input
           ref={field}
@@ -46,6 +50,6 @@ export default function SearchBar() {
           ))}
         </ul>
       )}
-    </>
+    </div>
   );
 }
