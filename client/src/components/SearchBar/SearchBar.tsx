@@ -10,8 +10,10 @@ interface SearchBarProps {
 export default function SearchBar({ focusOnMount }: SearchBarProps) {
   const [query, setQuery] = useState("");
   const [suggestions, getSuggestions] = useBreedSuggestions();
+  const [showSuggestions, setShowSuggestions] = useState(true);
 
   const field = useRef<HTMLInputElement>(null);
+  const searchBarContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (window.innerWidth < 1000 && focusOnMount) {
@@ -27,7 +29,7 @@ export default function SearchBar({ focusOnMount }: SearchBarProps) {
   const thereAreSuggestions = Boolean(suggestions?.info?.length);
 
   return (
-    <div className="search-bar-container">
+    <div ref={searchBarContainer} className="search-bar-container">
       <form className="search-bar" onSubmit={event => event.preventDefault()}>
         <input
           ref={field}
@@ -35,13 +37,15 @@ export default function SearchBar({ focusOnMount }: SearchBarProps) {
           type="text"
           placeholder="Enter your breed"
           value={query}
+          onFocus={() => setShowSuggestions(true)}
+          onBlur={() => setShowSuggestions(false)}
           onChange={changeHandler}
         />
         <button className="search-bar__search-button" type="submit">
           <SearchIcon />
         </button>
       </form>
-      {thereAreSuggestions && (
+      {showSuggestions && thereAreSuggestions && (
         <ul className="search-bar__suggestions">
           {suggestions?.info?.map(({ id, name }) => (
             <li className="search-bar__suggestion" key={id}>
