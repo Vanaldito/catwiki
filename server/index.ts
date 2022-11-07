@@ -18,6 +18,9 @@ async function main() {
   app.get("/", (_req, res) => {
     res.sendFile(path.join(__dirname, process.env.VEREX_HTML_PATH as string));
   });
+  app.get("/breed", (_req, res) => {
+    res.sendFile(path.join(__dirname, process.env.VEREX_HTML_PATH as string));
+  });
 
   /* Add your routes here */
 
