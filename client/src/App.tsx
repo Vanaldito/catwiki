@@ -8,7 +8,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/*" element={<div>404 not found</div>} />
+      <Route path="/*" element={<div>404 Not Found</div>} />
     </Routes>
   );
 }
