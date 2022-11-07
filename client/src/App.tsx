@@ -1,7 +1,14 @@
+import { Routes, Route } from "react-router-dom";
+
 import { HomePage } from "./pages";
 
 import "./App.css";
 
 export default function App() {
-  return <HomePage />;
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/*" element={<div>404 not found</div>} />
+    </Routes>
+  );
 }
