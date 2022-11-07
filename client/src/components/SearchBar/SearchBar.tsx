@@ -18,7 +18,7 @@ export default function SearchBar({ focusOnMount }: SearchBarProps) {
   const searchBarContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (window.innerWidth < 1000 && focusOnMount) {
+    if (focusOnMount) {
       field.current?.focus();
     }
   }, []);
