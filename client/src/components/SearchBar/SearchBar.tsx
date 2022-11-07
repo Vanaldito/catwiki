@@ -12,6 +12,8 @@ export default function SearchBar({ focusOnMount }: SearchBarProps) {
   const [suggestions, getSuggestions] = useBreedSuggestions();
   const [showSuggestions, setShowSuggestions] = useState(true);
 
+  const [suggestionSelected, setSuggestionSelected] = useState(false);
+
   const field = useRef<HTMLInputElement>(null);
   const searchBarContainer = useRef<HTMLDivElement>(null);
 
@@ -21,9 +23,9 @@ export default function SearchBar({ focusOnMount }: SearchBarProps) {
     }
   }, []);
 
-  function changeHandler(event: React.ChangeEvent<HTMLInputElement>) {
-    setQuery(event.target.value);
-    getSuggestions(event.target.value);
+  function changeQuery(newQuery: string) {
+    setQuery(newQuery);
+    getSuggestions(newQuery);
   }
 
   const thereAreSuggestions = Boolean(suggestions?.info?.length);
@@ -38,8 +40,15 @@ export default function SearchBar({ focusOnMount }: SearchBarProps) {
           placeholder="Enter your breed"
           value={query}
           onFocus={() => setShowSuggestions(true)}
-          onBlur={() => setShowSuggestions(false)}
-          onChange={changeHandler}
+          onBlur={event => {
+            if (!suggestionSelected) {
+              return setShowSuggestions(false);
+            }
+
+            setSuggestionSelected(false);
+            event.target.focus();
+          }}
+          onChange={event => changeQuery(event.target.value)}
         />
         <button className="search-bar__search-button" type="submit">
           <SearchIcon />
@@ -48,7 +57,14 @@ export default function SearchBar({ focusOnMount }: SearchBarProps) {
       {showSuggestions && thereAreSuggestions && (
         <ul className="search-bar__suggestions">
           {suggestions?.info?.map(({ id, name }) => (
-            <li className="search-bar__suggestion" key={id}>
+            <li
+              className="search-bar__suggestion"
+              onMouseDown={() => {
+                changeQuery(name);
+                setSuggestionSelected(true);
+              }}
+              key={id}
+            >
               {name}
             </li>
           ))}
