@@ -47,6 +47,13 @@ export default function BreedPage() {
         <>Loading ...</>
       ) : (
         <div className="breed-info">
+          <img
+            className="breed-reference-image"
+            src={`/images/${breedInfo?.reference_image_id}`}
+            alt="Breed reference image"
+            width={370}
+            height={370}
+          />
           <h2 className="breed-name">{breedInfo?.name}</h2>
           <p className="breed-description">{breedInfo?.description}</p>
           <BreedCharacteristics
