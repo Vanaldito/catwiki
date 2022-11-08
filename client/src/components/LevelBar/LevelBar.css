@@ -1,0 +1,20 @@
+.level-bar {
+  width: 300px;
+  max-width: 100%;
+  height: 10px;
+  gap: 8px;
+  display: flex;
+}
+
+.level {
+  flex-grow: 1;
+  border-radius: 8px;
+}
+
+.level--completed {
+  background-color: #544439;
+}
+
+.level--uncompleted {
+  background-color: #e0e0e0;
+}
