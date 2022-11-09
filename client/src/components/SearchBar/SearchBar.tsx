@@ -59,7 +59,11 @@ export default function SearchBar({ focusOnMount }: SearchBarProps) {
           }}
           onChange={event => changeQuery(event.target.value)}
         />
-        <button className="search-bar__search-button" type="submit">
+        <button
+          className="search-bar__search-button"
+          type="submit"
+          aria-label="Search Breed"
+        >
           <SearchIcon />
         </button>
       </form>
