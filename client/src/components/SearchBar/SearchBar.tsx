@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useBreedSuggestions } from "../../hooks";
 import { SearchIcon } from "../Icons";
 import "./SearchBar.css";
@@ -11,6 +12,8 @@ export default function SearchBar({ focusOnMount }: SearchBarProps) {
   const [query, setQuery] = useState("");
   const [suggestions, getSuggestions] = useBreedSuggestions();
   const [showSuggestions, setShowSuggestions] = useState(true);
+
+  const navigate = useNavigate();
 
   const [suggestionSelected, setSuggestionSelected] = useState(false);
 
@@ -28,11 +31,17 @@ export default function SearchBar({ focusOnMount }: SearchBarProps) {
     getSuggestions(newQuery);
   }
 
+  function submitHandler(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    navigate(`/breed?name=${query.trim()}`);
+  }
+
   const thereAreSuggestions = Boolean(suggestions?.info?.length);
 
   return (
     <div ref={searchBarContainer} className="search-bar-container">
-      <form className="search-bar" onSubmit={event => event.preventDefault()}>
+      <form className="search-bar" onSubmit={submitHandler}>
         <input
           ref={field}
           className="search-bar__field"
