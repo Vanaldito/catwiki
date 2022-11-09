@@ -8,7 +8,8 @@
 
 .breed-reference-image {
   object-fit: contain;
-  max-width: 100%;
+  width: max-content;
+  max-width: min(100%, 370px);
   height: auto;
   display: block;
   margin: 0 auto;

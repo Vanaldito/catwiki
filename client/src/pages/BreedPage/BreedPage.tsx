@@ -55,38 +55,56 @@ export default function BreedPage() {
             height={370}
           />
           <h2 className="breed-name">{breedInfo?.name}</h2>
-          <p className="breed-description">{breedInfo?.description}</p>
+          <p className="breed-description">
+            {breedInfo?.description ?? "No description to display"}
+          </p>
           <BreedCharacteristics
             characteristics={{
-              Temperament: breedInfo?.temperament,
-              Origin: breedInfo?.origin,
+              Temperament: breedInfo?.temperament ?? "Temperament unknowed",
+              Origin: breedInfo?.origin ?? "Origin unknowed",
               "Life span": breedInfo?.life_span
                 ? `${breedInfo.life_span} years`
-                : undefined,
+                : "Life span unknowed",
               Adaptability: breedInfo?.adaptability ? (
                 <LevelBar level={breedInfo.adaptability} />
-              ) : undefined,
+              ) : (
+                "Adaptability unknowed"
+              ),
               "Affection level": breedInfo?.affection_level ? (
                 <LevelBar level={breedInfo.affection_level} />
-              ) : undefined,
+              ) : (
+                "Affection level unknowed"
+              ),
               "Child friendly": breedInfo?.child_friendly ? (
                 <LevelBar level={breedInfo.child_friendly} />
-              ) : undefined,
+              ) : (
+                "Child friendly unknowed"
+              ),
               Grooming: breedInfo?.grooming ? (
                 <LevelBar level={breedInfo.grooming} />
-              ) : undefined,
+              ) : (
+                "Grooming unknowed"
+              ),
               Intelligence: breedInfo?.intelligence ? (
                 <LevelBar level={breedInfo.intelligence} />
-              ) : undefined,
+              ) : (
+                "Intelligence unknowed"
+              ),
               "Health issues": breedInfo?.health_issues ? (
                 <LevelBar level={breedInfo.health_issues} />
-              ) : undefined,
+              ) : (
+                "Health issues unknowed"
+              ),
               "Social needs": breedInfo?.social_needs ? (
                 <LevelBar level={breedInfo.social_needs} />
-              ) : undefined,
+              ) : (
+                "Social needs unknowed"
+              ),
               "Stranger friendly": breedInfo?.stranger_friendly ? (
                 <LevelBar level={breedInfo.stranger_friendly} />
-              ) : undefined,
+              ) : (
+                "Stranger friendly unknowed"
+              ),
             }}
           />
         </div>

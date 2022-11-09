@@ -11,16 +11,14 @@ export default function BreedCharacteristics({
     <div className="breed-characteristics-container">
       <table className="breed-characteristics">
         <tbody>
-          {Object.entries(characteristics).map(([key, value]) =>
-            value ? (
-              <tr className="breed-characteristics__row" key={key}>
-                <td className="breed-characteristics__column">
-                  <b>{key}:</b>
-                </td>
-                <td>{value}</td>
-              </tr>
-            ) : undefined
-          )}
+          {Object.entries(characteristics).map(([key, value]) => (
+            <tr className="breed-characteristics__row" key={key}>
+              <td className="breed-characteristics__column">
+                <b>{key}:</b>
+              </td>
+              <td>{value}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
