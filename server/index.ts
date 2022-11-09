@@ -40,7 +40,11 @@ async function main() {
           });
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+
+        res.status(500).json({ status: 500, error: "Internal server error" });
+      });
   });
 
   /* Add your routes here */

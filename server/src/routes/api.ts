@@ -17,7 +17,12 @@ apiRouter.get("/breeds", (req, res) => {
     },
   })
     .then(res => res.json())
-    .then(data => res.json({ status: 200, info: data }));
+    .then(data => res.json({ status: 200, info: data }))
+    .catch(err => {
+      console.log(err);
+
+      res.status(500).json({ status: 500, error: "Internal Server Error" });
+    });
 });
 
 export default apiRouter;
