@@ -41,75 +41,77 @@ export default function BreedPage() {
     );
 
   return (
-    <main className="breed-page">
+    <div className="breed-page">
       <Navbar />
-      {loading ? (
-        <>Loading ...</>
-      ) : (
-        <div className="breed-info">
-          <img
-            className="breed-reference-image"
-            src={`/images/${breedInfo?.reference_image_id}`}
-            alt="Breed reference image"
-            width={370}
-            height={370}
-          />
-          <h2 className="breed-name">{breedInfo?.name}</h2>
-          <p className="breed-description">
-            {breedInfo?.description ?? "No description to display"}
-          </p>
-          <BreedCharacteristics
-            characteristics={{
-              Temperament: breedInfo?.temperament ?? "Temperament unknowed",
-              Origin: breedInfo?.origin ?? "Origin unknowed",
-              "Life span": breedInfo?.life_span
-                ? `${breedInfo.life_span} years`
-                : "Life span unknowed",
-              Adaptability: breedInfo?.adaptability ? (
-                <LevelBar level={breedInfo.adaptability} />
-              ) : (
-                "Adaptability unknowed"
-              ),
-              "Affection level": breedInfo?.affection_level ? (
-                <LevelBar level={breedInfo.affection_level} />
-              ) : (
-                "Affection level unknowed"
-              ),
-              "Child friendly": breedInfo?.child_friendly ? (
-                <LevelBar level={breedInfo.child_friendly} />
-              ) : (
-                "Child friendly unknowed"
-              ),
-              Grooming: breedInfo?.grooming ? (
-                <LevelBar level={breedInfo.grooming} />
-              ) : (
-                "Grooming unknowed"
-              ),
-              Intelligence: breedInfo?.intelligence ? (
-                <LevelBar level={breedInfo.intelligence} />
-              ) : (
-                "Intelligence unknowed"
-              ),
-              "Health issues": breedInfo?.health_issues ? (
-                <LevelBar level={breedInfo.health_issues} />
-              ) : (
-                "Health issues unknowed"
-              ),
-              "Social needs": breedInfo?.social_needs ? (
-                <LevelBar level={breedInfo.social_needs} />
-              ) : (
-                "Social needs unknowed"
-              ),
-              "Stranger friendly": breedInfo?.stranger_friendly ? (
-                <LevelBar level={breedInfo.stranger_friendly} />
-              ) : (
-                "Stranger friendly unknowed"
-              ),
-            }}
-          />
-        </div>
-      )}
+      <main>
+        {loading ? (
+          <>Loading ...</>
+        ) : (
+          <div className="breed-info">
+            <img
+              className="breed-reference-image"
+              src={`/images/${breedInfo?.reference_image_id}`}
+              alt="Breed reference image"
+              width={370}
+              height={370}
+            />
+            <h2 className="breed-name">{breedInfo?.name}</h2>
+            <p className="breed-description">
+              {breedInfo?.description ?? "No description to display"}
+            </p>
+            <BreedCharacteristics
+              characteristics={{
+                Temperament: breedInfo?.temperament ?? "Temperament unknowed",
+                Origin: breedInfo?.origin ?? "Origin unknowed",
+                "Life span": breedInfo?.life_span
+                  ? `${breedInfo.life_span} years`
+                  : "Life span unknowed",
+                Adaptability: breedInfo?.adaptability ? (
+                  <LevelBar level={breedInfo.adaptability} />
+                ) : (
+                  "Adaptability unknowed"
+                ),
+                "Affection level": breedInfo?.affection_level ? (
+                  <LevelBar level={breedInfo.affection_level} />
+                ) : (
+                  "Affection level unknowed"
+                ),
+                "Child friendly": breedInfo?.child_friendly ? (
+                  <LevelBar level={breedInfo.child_friendly} />
+                ) : (
+                  "Child friendly unknowed"
+                ),
+                Grooming: breedInfo?.grooming ? (
+                  <LevelBar level={breedInfo.grooming} />
+                ) : (
+                  "Grooming unknowed"
+                ),
+                Intelligence: breedInfo?.intelligence ? (
+                  <LevelBar level={breedInfo.intelligence} />
+                ) : (
+                  "Intelligence unknowed"
+                ),
+                "Health issues": breedInfo?.health_issues ? (
+                  <LevelBar level={breedInfo.health_issues} />
+                ) : (
+                  "Health issues unknowed"
+                ),
+                "Social needs": breedInfo?.social_needs ? (
+                  <LevelBar level={breedInfo.social_needs} />
+                ) : (
+                  "Social needs unknowed"
+                ),
+                "Stranger friendly": breedInfo?.stranger_friendly ? (
+                  <LevelBar level={breedInfo.stranger_friendly} />
+                ) : (
+                  "Stranger friendly unknowed"
+                ),
+              }}
+            />
+          </div>
+        )}
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
