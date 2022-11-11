@@ -18,6 +18,7 @@
   height: auto;
   display: block;
   margin: 0 auto;
+  border-radius: 24px;
 }
 
 .breed-name {
@@ -34,5 +35,23 @@
 @media (min-width: 700px) {
   .breed-page {
     padding: 26px 96px 0;
+  }
+}
+
+@media (min-width: 1000px) {
+  .breed-info {
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .breed-reference-image {
+    margin: 0;
+    min-width: 0;
+  }
+
+  .breed-description {
+    max-width: 600px;
   }
 }
