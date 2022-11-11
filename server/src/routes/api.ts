@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { searchBreedsByName } from "../services";
 
 const apiRouter = Router();
 
@@ -10,13 +11,13 @@ apiRouter.get("/breeds", (req, res) => {
       .status(400)
       .json({ status: 400, error: "Query string not found" });
 
-  fetch(`https://api.thecatapi.com/v1/breeds/search?q=${q}`, {
-    method: "GET",
-    headers: {
-      "x-api-key": process.env.API_KEY as string,
-    },
-  })
-    .then(res => res.json())
+  if (typeof q !== "string") {
+    return res
+      .status(400)
+      .json({ status: 400, error: "Query string not valid" });
+  }
+
+  searchBreedsByName(q)
     .then(data => res.json({ status: 200, info: data }))
     .catch(err => {
       console.log(err);
