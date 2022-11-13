@@ -42,7 +42,7 @@ apiRouter.get("/breed", (req, res) => {
 
   searchBreedsByName(name)
     .then(data => {
-      if (data.length > 0 && data[0].name.toLowerCase() !== name.toLowerCase())
+      if (data.length == 0 || data[0].name.toLowerCase() !== name.toLowerCase())
         return res
           .status(404)
           .json({ status: 404, error: `Breed with name ${name} not found` });
