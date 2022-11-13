@@ -3,6 +3,7 @@ import path from "path";
 import dotenv from "dotenv";
 
 import { apiRouter } from "./src/routes";
+import { getImageById } from "./src/services";
 
 async function main() {
   const app = express();
@@ -22,21 +23,20 @@ async function main() {
     res.sendFile(path.join(__dirname, process.env.VEREX_HTML_PATH as string));
   });
 
-  app.get("/images/:image_id", (req, res) => {
-    const image_id = req.params.image_id;
+  app.get("/images/:imageId", (req, res) => {
+    const imageId = req.params.imageId;
 
-    if (!image_id)
-      return res.json({ status: 400, error: "Image id not found" });
+    if (!imageId)
+      return res.status(400).json({ status: 400, error: "Image id not found" });
 
-    fetch(`https://api.thecatapi.com/v1/images/${image_id}`)
-      .then(res => res.json())
+    getImageById(imageId)
       .then(data => {
         if ("url" in data) {
           res.redirect(data.url);
         } else {
-          res.json({
+          res.status(404).json({
             status: 404,
-            error: `Image with id ${image_id} not found`,
+            error: `Image with id ${imageId} not found`,
           });
         }
       })
