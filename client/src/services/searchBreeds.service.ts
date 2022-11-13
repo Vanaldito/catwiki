@@ -1,6 +1,8 @@
-import { BreedsResponse, FetchCall } from "../models";
+import { BreedInfo, APIResponse, FetchCall } from "../models";
 
-export default function searchBreeds(query: string): FetchCall<BreedsResponse> {
+export default function searchBreeds(
+  query: string
+): FetchCall<APIResponse<BreedInfo[]>> {
   const controller = new AbortController();
 
   return {

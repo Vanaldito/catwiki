@@ -1,7 +1,5 @@
-import { BreedInfo } from "./BreedInfo.model";
-
-export interface BreedsResponse {
+export interface APIResponse<T> {
   status: number;
-  info?: BreedInfo[];
+  info?: T;
   error?: string;
 }

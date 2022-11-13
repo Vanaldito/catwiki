@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { Footer, LevelBar, Navbar } from "../../components";
 import { BreedCharacteristics } from "../../components/BreedCharacteristics";
 import { BreedInfo } from "../../models";
-import { searchBreeds } from "../../services";
+import { getBreedInfo } from "../../services";
 
 import "./BreedPage.css";
 
@@ -17,11 +17,11 @@ export default function BreedPage() {
   useEffect(() => {
     if (!breedName) return setLoading(false);
 
-    const { controller, call } = searchBreeds(breedName);
+    const { controller, call } = getBreedInfo(breedName);
 
     call.then(data => {
-      if (data.status === 200 && data.info && data.info.length > 0) {
-        setBreedInfo(data.info[0]);
+      if (data.status === 200 && data.info) {
+        setBreedInfo(data.info);
       }
       setLoading(false);
     });
@@ -35,7 +35,7 @@ export default function BreedPage() {
     return (
       <main className="breed-page">
         <Navbar />
-        <>Breed not found</>
+        Breed not found
         <Footer />
       </main>
     );

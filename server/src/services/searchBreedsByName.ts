@@ -1,6 +1,8 @@
 import { BreedInfo } from "../models";
 
-export default function searchBreedsByName(query: string): Promise<BreedInfo> {
+export default function searchBreedsByName(
+  query: string
+): Promise<BreedInfo[]> {
   return fetch(`https://api.thecatapi.com/v1/breeds/search?q=${query}`, {
     method: "GET",
     headers: {
