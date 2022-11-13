@@ -3,7 +3,7 @@ import { searchBreedsByName } from "../services";
 
 const apiRouter = Router();
 
-apiRouter.get("/breeds", (req, res) => {
+apiRouter.get("/search/breeds", (req, res) => {
   const q = req.query.q;
 
   if (!q)
