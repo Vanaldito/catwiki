@@ -2,12 +2,14 @@ import { useEffect, useRef } from "react";
 
 interface SuggestionProps {
   isSelected: boolean;
+  onMouseOver: () => void;
   onMouseDown: () => void;
   children?: React.ReactNode;
 }
 
 export default function Suggestion({
   children,
+  onMouseOver,
   onMouseDown,
   isSelected,
 }: SuggestionProps) {
@@ -24,6 +26,7 @@ export default function Suggestion({
   return (
     <button
       onMouseDown={onMouseDown}
+      onMouseOver={onMouseOver}
       className={`suggestion${isSelected ? " suggestion--selected" : ""}`}
       ref={suggestion}
     >

@@ -103,6 +103,9 @@ export default function SearchBar({ focusOnMount }: SearchBarProps) {
             <li key={id}>
               <Suggestion
                 isSelected={index === selectedSuggestionIndex}
+                onMouseOver={() => {
+                  setSelectedSuggestionIndex(index);
+                }}
                 onMouseDown={() => {
                   navigate(`/breed?name=${name}`);
                 }}
