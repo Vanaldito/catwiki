@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { BreedsResponse } from "../models";
+import { APIResponse, BreedInfo } from "../models";
 import { searchBreeds } from "../services";
 
 export default function useBreedSuggestions(): [
-  BreedsResponse | null,
+  APIResponse<BreedInfo[]> | null,
   (query: string) => void
 ] {
   const [controller, setController] = useState<AbortController | null>(null);
-  const [suggestions, setSuggestions] = useState<BreedsResponse | null>(null);
+  const [suggestions, setSuggestions] = useState<APIResponse<
+    BreedInfo[]
+  > | null>(null);
 
   function getSuggestions(query: string) {
     if (!query) return setSuggestions(null);
