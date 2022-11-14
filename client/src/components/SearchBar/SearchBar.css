@@ -46,6 +46,11 @@
 }
 
 .suggestion {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background-color: #fff;
+  border: none;
   padding: 15px;
 }
 

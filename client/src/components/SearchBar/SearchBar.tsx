@@ -19,8 +19,6 @@ export default function SearchBar({ focusOnMount }: SearchBarProps) {
 
   const navigate = useNavigate();
 
-  const [suggestionSelected, setSuggestionSelected] = useState(false);
-
   const field = useRef<HTMLInputElement>(null);
   const searchBarContainer = useRef<HTMLDivElement>(null);
 
@@ -84,14 +82,9 @@ export default function SearchBar({ focusOnMount }: SearchBarProps) {
           placeholder="Enter your breed"
           value={query}
           onFocus={() => setShowSuggestions(true)}
-          onBlur={event => {
-            if (!suggestionSelected) {
-              setSelectedSuggestionIndex(-1);
-              return setShowSuggestions(false);
-            }
-
-            setSuggestionSelected(false);
-            event.target.focus();
+          onBlur={() => {
+            setSelectedSuggestionIndex(-1);
+            return setShowSuggestions(false);
           }}
           onKeyDown={keyDownHandler}
           onChange={event => changeQuery(event.target.value)}
@@ -109,11 +102,10 @@ export default function SearchBar({ focusOnMount }: SearchBarProps) {
           {suggestions?.info?.map(({ id, name }, index) => (
             <li key={id}>
               <Suggestion
-                onMouseDown={() => {
-                  changeQuery(name);
-                  setSuggestionSelected(true);
-                }}
                 isSelected={index === selectedSuggestionIndex}
+                onMouseDown={() => {
+                  navigate(`/breed?name=${name}`);
+                }}
               >
                 {name}
               </Suggestion>

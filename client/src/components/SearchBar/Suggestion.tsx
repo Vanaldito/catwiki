@@ -1,19 +1,17 @@
 import { useEffect, useRef } from "react";
 
-interface SuggestionProps
-  extends React.DetailedHTMLProps<
-    React.HTMLProps<HTMLDivElement>,
-    HTMLDivElement
-  > {
+interface SuggestionProps {
   isSelected: boolean;
+  onMouseDown: () => void;
+  children?: React.ReactNode;
 }
 
 export default function Suggestion({
   children,
+  onMouseDown,
   isSelected,
-  ...attributtes
 }: SuggestionProps) {
-  const suggestion = useRef<HTMLDivElement>(null);
+  const suggestion = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!isSelected) return;
@@ -24,12 +22,12 @@ export default function Suggestion({
   }, [isSelected]);
 
   return (
-    <div
-      {...attributtes}
+    <button
+      onMouseDown={onMouseDown}
       className={`suggestion${isSelected ? " suggestion--selected" : ""}`}
       ref={suggestion}
     >
       {children}
-    </div>
+    </button>
   );
 }
