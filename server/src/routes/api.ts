@@ -1,7 +1,10 @@
 import { Router } from "express";
+import { SearchedBreedsManager } from "../models";
 import { searchBreedsByName } from "../services";
 
 const apiRouter = Router();
+
+const searchedBreedsManager = new SearchedBreedsManager();
 
 apiRouter.get("/search/breeds", (req, res) => {
   const q = req.query.q;
@@ -47,6 +50,8 @@ apiRouter.get("/breed", (req, res) => {
           .status(404)
           .json({ status: 404, error: `Breed with name ${name} not found` });
 
+      searchedBreedsManager.addSearch(name);
+      console.log(searchedBreedsManager.mostSearchedBreeds);
       res.json({ status: 200, info: data[0] });
     })
     .catch(err => {
