@@ -4,7 +4,7 @@ import { searchBreedsByName } from "../services";
 
 const apiRouter = Router();
 
-const searchedBreedsManager = new SearchedBreedsManager();
+const searchedBreedsManager = SearchedBreedsManager.get();
 
 apiRouter.get("/search/breeds", (req, res) => {
   const q = req.query.q;

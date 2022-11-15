@@ -1,7 +1,8 @@
 export default class SearchedBreedsManager {
+  private static instance: null | SearchedBreedsManager = null;
   public searchedBreeds: { [key: string]: number };
 
-  public constructor() {
+  private constructor() {
     this.searchedBreeds = {};
   }
 
@@ -21,5 +22,13 @@ export default class SearchedBreedsManager {
       .splice(0, 10);
 
     return mostSearchedBreeds;
+  }
+
+  public static get() {
+    if (this.instance === null) {
+      this.instance = new SearchedBreedsManager();
+    }
+
+    return this.instance;
   }
 }
