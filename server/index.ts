@@ -1,14 +1,11 @@
 import express from "express";
 import path from "path";
-import dotenv from "dotenv";
 
 import { apiRouter } from "./src/routes";
 import { getImageById } from "./src/services";
 
 async function main() {
   const app = express();
-
-  dotenv.config({ path: path.join(__dirname, ".env.local") });
 
   if (process.env.VEREX_ENV === "production") {
     app.use("/", express.static(path.join(__dirname, "static")));

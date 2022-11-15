@@ -1,3 +1,5 @@
+import env from "../../environment";
+
 import { BreedInfo } from "../models";
 
 export default function searchBreedsByName(
@@ -6,7 +8,7 @@ export default function searchBreedsByName(
   return fetch(`https://api.thecatapi.com/v1/breeds/search?q=${query}`, {
     method: "GET",
     headers: {
-      "x-api-key": process.env.API_KEY as string,
+      "x-api-key": env.API_KEY as string,
     },
   }).then(res => res.json());
 }
