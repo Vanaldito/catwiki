@@ -6,7 +6,10 @@ export default class SearchedBreedsManager {
   private static instance: null | SearchedBreedsManager = null;
 
   private constructor() {
-    connect(env.MONGODB_URI).catch(err => console.log(err));
+    connect(env.MONGODB_URI, {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    }).catch(err => console.error(err));
   }
 
   public async addSearch(breedName: string) {
