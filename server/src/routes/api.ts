@@ -55,8 +55,21 @@ apiRouter.get("/breed", async (req, res) => {
         .json({ status: 404, error: `Breed with name ${name} not found` });
 
     await searchedBreedsManager.addSearch(name);
-    console.log(await searchedBreedsManager.getMostSearchedBreeds());
+
     res.json({ status: 200, info: breeds[0] });
+  } catch (err) {
+    console.log(err);
+
+    res.status(500).json({ status: 500, error: "Internal Server Error" });
+  }
+});
+
+apiRouter.get("/most-searched-breeds", async (_req, res) => {
+  try {
+    const mostSearchedBreeds =
+      await searchedBreedsManager.getMostSearchedBreeds();
+
+    res.json({ status: 200, info: mostSearchedBreeds });
   } catch (err) {
     console.log(err);
 
