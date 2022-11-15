@@ -19,7 +19,5 @@
     "prettier": "^2.7.1",
     "verex": "^1.0.0"
   },
-  "dependencies": {
-    "react-router-dom": "^6.4.3"
-  }
+  "dependencies": {}
 }
