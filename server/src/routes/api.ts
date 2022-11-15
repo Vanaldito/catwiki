@@ -29,7 +29,7 @@ apiRouter.get("/search/breeds", (req, res) => {
     });
 });
 
-apiRouter.get("/breed", (req, res) => {
+apiRouter.get("/breed", async (req, res) => {
   const name = req.query.name;
 
   if (!name)
@@ -43,22 +43,25 @@ apiRouter.get("/breed", (req, res) => {
       .json({ status: 400, error: "Query string not valid" });
   }
 
-  searchBreedsByName(name)
-    .then(data => {
-      if (data.length == 0 || data[0].name.toLowerCase() !== name.toLowerCase())
-        return res
-          .status(404)
-          .json({ status: 404, error: `Breed with name ${name} not found` });
+  try {
+    const breeds = await searchBreedsByName(name);
 
-      searchedBreedsManager.addSearch(name);
-      console.log(searchedBreedsManager.mostSearchedBreeds);
-      res.json({ status: 200, info: data[0] });
-    })
-    .catch(err => {
-      console.log(err);
+    if (
+      breeds.length == 0 ||
+      breeds[0].name.toLowerCase() !== name.toLowerCase()
+    )
+      return res
+        .status(404)
+        .json({ status: 404, error: `Breed with name ${name} not found` });
 
-      res.status(500).json({ status: 500, error: "Internal Server Error" });
-    });
+    await searchedBreedsManager.addSearch(name);
+    console.log(await searchedBreedsManager.getMostSearchedBreeds());
+    res.json({ status: 200, info: breeds[0] });
+  } catch (err) {
+    console.log(err);
+
+    res.status(500).json({ status: 500, error: "Internal Server Error" });
+  }
 });
 
 export default apiRouter;

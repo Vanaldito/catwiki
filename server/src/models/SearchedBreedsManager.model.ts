@@ -1,27 +1,31 @@
+import { connect } from "mongoose";
+import env from "../../environment";
+import SearchedBreeds from "./SearchedBreeds.model";
+
 export default class SearchedBreedsManager {
   private static instance: null | SearchedBreedsManager = null;
-  public searchedBreeds: { [key: string]: number };
 
   private constructor() {
-    this.searchedBreeds = {};
+    connect(env.MONGODB_URI).catch(err => console.log(err));
   }
 
-  public addSearch(breedName: string) {
-    const key = breedName.toLowerCase();
+  public async addSearch(breedName: string) {
+    const name = breedName.toLowerCase();
 
-    if (!(key in this.searchedBreeds)) {
-      this.searchedBreeds[key] = 0;
-    }
+    const doc =
+      (await SearchedBreeds.findOne({ breed: name })) ??
+      new SearchedBreeds({ breed: name, searches: 0 });
 
-    this.searchedBreeds[key]++;
+    doc.searches++;
+    doc.save();
   }
 
-  public get mostSearchedBreeds() {
-    const mostSearchedBreeds = Object.keys(this.searchedBreeds)
-      .sort((a, b) => this.searchedBreeds[b] - this.searchedBreeds[a])
-      .splice(0, 10);
+  public async getMostSearchedBreeds() {
+    const docs = await SearchedBreeds.find({})
+      .sort({ searches: "desc" })
+      .limit(10);
 
-    return mostSearchedBreeds;
+    return docs;
   }
 
   public static get() {
