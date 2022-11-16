@@ -54,9 +54,15 @@ apiRouter.get("/breed", async (req, res) => {
         .status(404)
         .json({ status: 404, error: `Breed with name ${name} not found` });
 
-    await searchedBreedsManager.addSearch(name);
+    const breed = breeds[0];
 
-    res.json({ status: 200, info: breeds[0] });
+    await searchedBreedsManager.addSearch(
+      breed.name,
+      breed.description,
+      breed.reference_image_id
+    );
+
+    res.json({ status: 200, info: breed });
   } catch (err) {
     console.log(err);
 

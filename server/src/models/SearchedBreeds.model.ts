@@ -1,16 +1,20 @@
 import { Document, model, Schema } from "mongoose";
 
-interface ISearchedBreeds extends Document {
-  breed: string;
+interface SearchedBreedsDocument extends Document {
+  breedName: string;
+  breedDescription?: string;
+  breedImageId?: string;
   searches: number;
 }
 
-const searchedBreedsSchema = new Schema<ISearchedBreeds>({
-  breed: { type: String, required: true },
+const searchedBreedsSchema = new Schema<SearchedBreedsDocument>({
+  breedName: { type: String, required: true },
+  breedDescription: String,
+  breedImageId: String,
   searches: { type: Number, required: true },
 });
 
-const SearchedBreeds = model<ISearchedBreeds>(
+const SearchedBreeds = model<SearchedBreedsDocument>(
   "SearchedBreeds",
   searchedBreedsSchema
 );

@@ -12,12 +12,19 @@ export default class SearchedBreedsManager {
     }).catch(err => console.error(err));
   }
 
-  public async addSearch(breedName: string) {
-    const name = breedName.toLowerCase();
-
+  public async addSearch(
+    breedName: string,
+    breedDescription: string | undefined,
+    breedImageId: string | undefined
+  ) {
     const doc =
-      (await SearchedBreeds.findOne({ breed: name })) ??
-      new SearchedBreeds({ breed: name, searches: 0 });
+      (await SearchedBreeds.findOne({ breedName })) ??
+      new SearchedBreeds({
+        breedName,
+        breedDescription,
+        breedImageId,
+        searches: 0,
+      });
 
     doc.searches++;
     doc.save();
