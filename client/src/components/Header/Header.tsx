@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { SearchedBreedInfo } from "../../models";
+import getMostSearchedBreeds from "../../services/getMostSearchedBreeds.service";
 import { DropdownMenu } from "../DropdownMenu";
 import { Logo } from "../Logo";
 import { SearchBar } from "../SearchBar";
@@ -6,7 +8,24 @@ import { SearchBar } from "../SearchBar";
 import "./Header.css";
 
 export default function Header() {
+  const [mostSearchedBreeds, setMostSearchedBreeds] = useState<
+    SearchedBreedInfo[] | null
+  >(null);
   const [displaySearchMenu, setDisplaySearchMenu] = useState(false);
+
+  useEffect(() => {
+    const { call, controller } = getMostSearchedBreeds();
+
+    call.then(data => {
+      if (data.status === 200 && data.info) {
+        setMostSearchedBreeds(data.info.slice(0, 4));
+      }
+    });
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
 
   return (
     <>
@@ -32,7 +51,19 @@ export default function Header() {
           <p className="header__most-searched-breeds__discover">
             66+ Breeds For you to discover
           </p>
-          <div className="header__most-searched-breeds__breeds"></div>
+          <div className="header__most-searched-breeds__breeds">
+            {mostSearchedBreeds?.map(breed => (
+              <div key={breed.breedName}>
+                <img
+                  className="most-searched-breeds__breed__image"
+                  src={`/images/${breed.breedImageId}`}
+                />
+                <div className="most-searched-breeds__breed__name">
+                  {breed.breedName}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </header>
       {displaySearchMenu && (

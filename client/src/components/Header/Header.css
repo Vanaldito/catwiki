@@ -61,6 +61,25 @@
   max-width: 200px;
 }
 
+.header__most-searched-breeds__breeds {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.most-searched-breeds__breed__image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.most-searched-breeds__breed__name {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
 @media (min-width: 500px) {
   .header__hero-text {
     padding: 35px 30px;
@@ -114,5 +133,11 @@
   .header__most-searched-breeds__discover {
     font-size: 48px;
     max-width: 500px;
+  }
+
+  .header__most-searched-breeds__breeds {
+    margin-top: 40px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
   }
 }
