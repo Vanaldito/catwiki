@@ -32,6 +32,18 @@
   font-size: 20px;
 }
 
+.have-a-cat__read-more {
+  display: inline-block;
+  margin-top: 25px;
+  font-size: 18px;
+  color: #29150799;
+  text-decoration: none;
+}
+
+.have-a-cat__read-more:hover {
+  color: #291507cc;
+}
+
 .have-a-cat__images {
   max-width: min(100%, 400px);
   margin: 35px auto 0;

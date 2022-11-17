@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useFetchAndLoad } from "../../hooks";
 import { SearchedBreedInfo } from "../../models";
 import { getMostSearchedBreeds } from "../../services";
@@ -46,9 +47,17 @@ export default function Header() {
           <h2 className="header__most-searched-breeds__title">
             Most Searched Breeds
           </h2>
-          <p className="header__most-searched-breeds__discover">
-            66+ Breeds For you to discover
-          </p>
+          <div className="header__most-searched-breeds__info">
+            <p className="header__most-searched-breeds__discover">
+              66+ Breeds For you to discover
+            </p>
+            <Link
+              className="header__most-searched-breeds__see-more"
+              to="/most-searched-breeds"
+            >
+              SEE MORE
+            </Link>
+          </div>
           {loading ? (
             <Loader />
           ) : (

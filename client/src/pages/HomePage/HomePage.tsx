@@ -16,6 +16,14 @@ export default function HomePage() {
               calming chemicals in your body which lower your stress and anxiety
               levels
             </p>
+            <a
+              className="have-a-cat__read-more"
+              href="https://animalkind.org/blog/top-5-reasons-cat/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              READ MORE
+            </a>
           </div>
           <div className="have-a-cat__images">
             {[2, 3, 1].map(number => (
