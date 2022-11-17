@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useFetchAndLoad } from "../../hooks";
 import { SearchedBreedInfo } from "../../models";
-import getMostSearchedBreeds from "../../services/getMostSearchedBreeds.service";
+import { getMostSearchedBreeds } from "../../services";
 import { DropdownMenu } from "../DropdownMenu";
 import { Logo } from "../Logo";
 import { SearchBar } from "../SearchBar";

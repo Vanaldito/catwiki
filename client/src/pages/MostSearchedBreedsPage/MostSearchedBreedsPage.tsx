@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Footer, Navbar } from "../../components";
 import { useFetchAndLoad } from "../../hooks";
 import { SearchedBreedInfo } from "../../models";
-import getMostSearchedBreeds from "../../services/getMostSearchedBreeds.service";
+import { getMostSearchedBreeds } from "../../services";
 
 import "./MostSearchedBreedsPage.css";
 
