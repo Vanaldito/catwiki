@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useBreedSuggestions } from "../../hooks";
 import { BreedInfo } from "../../models";
 import { SearchIcon } from "../Icons";
+import { Loader } from "../Loader";
 import "./SearchBar.css";
 import Suggestion from "./Suggestion";
 
@@ -12,7 +13,7 @@ interface SearchBarProps {
 
 export default function SearchBar({ focusOnMount }: SearchBarProps) {
   const [query, setQuery] = useState("");
-  const [suggestions, getSuggestions] = useBreedSuggestions();
+  const { loading, suggestions, getSuggestions } = useBreedSuggestions();
   const [showSuggestions, setShowSuggestions] = useState(true);
 
   const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
@@ -97,23 +98,28 @@ export default function SearchBar({ focusOnMount }: SearchBarProps) {
           <SearchIcon />
         </button>
       </form>
-      {showSuggestions && thereAreSuggestions && (
+      {showSuggestions && (
         <ul className="search-bar__suggestions">
-          {suggestions?.info?.map(({ id, name }, index) => (
-            <li key={id}>
-              <Suggestion
-                isSelected={index === selectedSuggestionIndex}
-                onMouseOver={() => {
-                  setSelectedSuggestionIndex(index);
-                }}
-                onMouseDown={() => {
-                  navigate(`/breed?name=${name}`);
-                }}
-              >
-                {name}
-              </Suggestion>
-            </li>
-          ))}
+          {loading ? (
+            <Loader />
+          ) : (
+            thereAreSuggestions &&
+            suggestions?.info?.map(({ id, name }, index) => (
+              <li key={id}>
+                <Suggestion
+                  isSelected={index === selectedSuggestionIndex}
+                  onMouseOver={() => {
+                    setSelectedSuggestionIndex(index);
+                  }}
+                  onMouseDown={() => {
+                    navigate(`/breed?name=${name}`);
+                  }}
+                >
+                  {name}
+                </Suggestion>
+              </li>
+            ))
+          )}
         </ul>
       )}
     </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Footer, Navbar } from "../../components";
+import { Footer, Loader, Navbar } from "../../components";
 import { useFetchAndLoad } from "../../hooks";
 import { SearchedBreedInfo } from "../../models";
 import { getMostSearchedBreeds } from "../../services";
@@ -11,7 +11,7 @@ export default function MostSearchedBreedsPage() {
     SearchedBreedInfo[] | null
   >(null);
 
-  const { callEndpoint } = useFetchAndLoad();
+  const { loading, callEndpoint } = useFetchAndLoad();
 
   useEffect(() => {
     callEndpoint(getMostSearchedBreeds()).then(data => {
@@ -28,27 +28,31 @@ export default function MostSearchedBreedsPage() {
         <h1 className="most-searched-breeds-page__title">
           Top 10 most searched breeds
         </h1>
-        <ol className="most-searched-breeds-page__breeds">
-          {mostSearchedBreeds?.map((breed, index) => (
-            <li
-              className="most-searched-breeds-page__breed"
-              key={breed.breedName}
-            >
-              <img
-                className="most-searched-breeds-page__breed__image"
-                src={`/images/${breed.breedImageId}`}
-              />
-              <div className="most-searched-breeds-page__breed__info">
-                <h2 className="most-searched-breeds-page__breed__name">
-                  {index + 1}. {breed.breedName}
-                </h2>
-                <p className="most-searched-breeds-page__breed__description">
-                  {breed.breedDescription}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ol>
+        {loading ? (
+          <Loader />
+        ) : (
+          <ol className="most-searched-breeds-page__breeds">
+            {mostSearchedBreeds?.map((breed, index) => (
+              <li
+                className="most-searched-breeds-page__breed"
+                key={breed.breedName}
+              >
+                <img
+                  className="most-searched-breeds-page__breed__image"
+                  src={`/images/${breed.breedImageId}`}
+                />
+                <div className="most-searched-breeds-page__breed__info">
+                  <h2 className="most-searched-breeds-page__breed__name">
+                    {index + 1}. {breed.breedName}
+                  </h2>
+                  <p className="most-searched-breeds-page__breed__description">
+                    {breed.breedDescription}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        )}
       </main>
       <Footer />
     </div>

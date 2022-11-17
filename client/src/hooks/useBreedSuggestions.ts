@@ -3,11 +3,8 @@ import { APIResponse, BreedInfo } from "../models";
 import { searchBreeds } from "../services";
 import useFetchAndLoad from "./useFetchAndLoad";
 
-export default function useBreedSuggestions(): [
-  APIResponse<BreedInfo[]> | null,
-  (query: string) => void
-] {
-  const { callEndpoint } = useFetchAndLoad();
+export default function useBreedSuggestions() {
+  const { loading, callEndpoint } = useFetchAndLoad();
   const [suggestions, setSuggestions] = useState<APIResponse<
     BreedInfo[]
   > | null>(null);
@@ -22,5 +19,5 @@ export default function useBreedSuggestions(): [
     });
   }
 
-  return [suggestions, getSuggestions];
+  return { loading, suggestions, getSuggestions };
 }

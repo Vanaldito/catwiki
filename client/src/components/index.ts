@@ -7,3 +7,4 @@ export * from "./SearchBar";
 export * from "./DropdownMenu";
 export * from "./BreedCharacteristics";
 export * from "./LevelBar";
+export * from "./Loader";

@@ -3,6 +3,7 @@ import { useFetchAndLoad } from "../../hooks";
 import { SearchedBreedInfo } from "../../models";
 import { getMostSearchedBreeds } from "../../services";
 import { DropdownMenu } from "../DropdownMenu";
+import { Loader } from "../Loader";
 import { Logo } from "../Logo";
 import { SearchBar } from "../SearchBar";
 
@@ -14,7 +15,7 @@ export default function Header() {
   >(null);
   const [displaySearchMenu, setDisplaySearchMenu] = useState(false);
 
-  const { callEndpoint } = useFetchAndLoad();
+  const { loading, callEndpoint } = useFetchAndLoad();
 
   useEffect(() => {
     callEndpoint(getMostSearchedBreeds()).then(data => {
@@ -48,19 +49,23 @@ export default function Header() {
           <p className="header__most-searched-breeds__discover">
             66+ Breeds For you to discover
           </p>
-          <div className="header__most-searched-breeds__breeds">
-            {mostSearchedBreeds?.map(breed => (
-              <div key={breed.breedName}>
-                <img
-                  className="most-searched-breeds__breed__image"
-                  src={`/images/${breed.breedImageId}`}
-                />
-                <div className="most-searched-breeds__breed__name">
-                  {breed.breedName}
+          {loading ? (
+            <Loader />
+          ) : (
+            <div className="header__most-searched-breeds__breeds">
+              {mostSearchedBreeds?.map(breed => (
+                <div key={breed.breedName}>
+                  <img
+                    className="most-searched-breeds__breed__image"
+                    src={`/images/${breed.breedImageId}`}
+                  />
+                  <div className="most-searched-breeds__breed__name">
+                    {breed.breedName}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </header>
       {displaySearchMenu && (

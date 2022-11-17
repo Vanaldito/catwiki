@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Footer, LevelBar, Navbar } from "../../components";
+import { Footer, LevelBar, Loader, Navbar } from "../../components";
 import { BreedCharacteristics } from "../../components/BreedCharacteristics";
 import { useFetchAndLoad } from "../../hooks";
 import { BreedInfo } from "../../models";
@@ -10,7 +10,6 @@ import "./BreedPage.css";
 
 export default function BreedPage() {
   const [breedInfo, setBreedInfo] = useState<BreedInfo | null>(null);
-  // const [loading, setLoading] = useState(true);
   const { loading, callEndpoint } = useFetchAndLoad();
   const location = useLocation();
 
@@ -40,7 +39,7 @@ export default function BreedPage() {
       <Navbar />
       <main>
         {loading ? (
-          <>Loading ...</>
+          <Loader />
         ) : (
           <div className="breed-info">
             <img
