@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useFetchAndLoad } from "../../hooks";
 import { SearchedBreedInfo } from "../../models";
 import getMostSearchedBreeds from "../../services/getMostSearchedBreeds.service";
 import { DropdownMenu } from "../DropdownMenu";
@@ -13,18 +14,14 @@ export default function Header() {
   >(null);
   const [displaySearchMenu, setDisplaySearchMenu] = useState(false);
 
-  useEffect(() => {
-    const { call, controller } = getMostSearchedBreeds();
+  const { callEndpoint } = useFetchAndLoad();
 
-    call.then(data => {
+  useEffect(() => {
+    callEndpoint(getMostSearchedBreeds()).then(data => {
       if (data.status === 200 && data.info) {
         setMostSearchedBreeds(data.info.slice(0, 4));
       }
     });
-
-    return () => {
-      controller.abort();
-    };
   }, []);
 
   return (

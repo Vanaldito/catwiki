@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Footer, LevelBar, Navbar } from "../../components";
 import { BreedCharacteristics } from "../../components/BreedCharacteristics";
+import { useFetchAndLoad } from "../../hooks";
 import { BreedInfo } from "../../models";
 import { getBreedInfo } from "../../services";
 
@@ -9,26 +10,20 @@ import "./BreedPage.css";
 
 export default function BreedPage() {
   const [breedInfo, setBreedInfo] = useState<BreedInfo | null>(null);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
+  const { loading, callEndpoint } = useFetchAndLoad();
   const location = useLocation();
 
   const breedName = new URLSearchParams(location.search).get("name");
 
   useEffect(() => {
-    if (!breedName) return setLoading(false);
+    if (!breedName) return;
 
-    const { controller, call } = getBreedInfo(breedName);
-
-    call.then(data => {
+    callEndpoint(getBreedInfo(breedName)).then(data => {
       if (data.status === 200 && data.info) {
         setBreedInfo(data.info);
       }
-      setLoading(false);
     });
-
-    return () => {
-      controller.abort();
-    };
   }, []);
 
   if (!loading && !breedInfo)

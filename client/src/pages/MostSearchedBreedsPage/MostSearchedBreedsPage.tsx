@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Footer, Navbar } from "../../components";
+import { useFetchAndLoad } from "../../hooks";
 import { SearchedBreedInfo } from "../../models";
 import getMostSearchedBreeds from "../../services/getMostSearchedBreeds.service";
 
@@ -10,18 +11,14 @@ export default function MostSearchedBreedsPage() {
     SearchedBreedInfo[] | null
   >(null);
 
-  useEffect(() => {
-    const { call, controller } = getMostSearchedBreeds();
+  const { callEndpoint } = useFetchAndLoad();
 
-    call.then(data => {
+  useEffect(() => {
+    callEndpoint(getMostSearchedBreeds()).then(data => {
       if (data.status === 200 && data.info) {
         setMostSearchedBreeds(data.info);
       }
     });
-
-    return () => {
-      controller.abort();
-    };
   }, []);
 
   return (
