@@ -19,6 +19,9 @@ async function main() {
   app.get("/breed", (_req, res) => {
     res.sendFile(path.join(__dirname, process.env.VEREX_HTML_PATH as string));
   });
+  app.get("/most-searched-breeds", (_req, res) => {
+    res.sendFile(path.join(__dirname, process.env.VEREX_HTML_PATH as string));
+  });
 
   app.get("/images/:imageId", (req, res) => {
     const imageId = req.params.imageId;
@@ -43,8 +46,6 @@ async function main() {
         res.status(500).json({ status: 500, error: "Internal server error" });
       });
   });
-
-  /* Add your routes here */
 
   if (process.env.VEREX_ENV === "development") {
     const { Assets } = await import("verex");
