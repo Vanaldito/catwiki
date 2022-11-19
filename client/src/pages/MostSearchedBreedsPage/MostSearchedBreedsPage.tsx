@@ -40,6 +40,7 @@ export default function MostSearchedBreedsPage() {
                 <img
                   className="most-searched-breeds-page__breed__image"
                   src={`/images/${breed.breedImageId}`}
+                  alt="Breed reference image"
                 />
                 <div className="most-searched-breeds-page__breed__info">
                   <h2 className="most-searched-breeds-page__breed__name">

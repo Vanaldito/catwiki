@@ -22,7 +22,7 @@ export default function HomePage() {
               target="_blank"
               rel="noreferrer"
             >
-              READ MORE
+              READ AN ARTICLE
             </a>
           </div>
           <div className="have-a-cat__images">

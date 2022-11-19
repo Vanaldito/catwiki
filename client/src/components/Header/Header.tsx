@@ -55,7 +55,7 @@ export default function Header() {
               className="header__most-searched-breeds__see-more"
               to="/most-searched-breeds"
             >
-              SEE MORE
+              TOP MOST SEARCHED BREEDS
             </Link>
           </div>
           {loading ? (
@@ -67,6 +67,7 @@ export default function Header() {
                   <img
                     className="most-searched-breeds__breed__image"
                     src={`/images/${breed.breedImageId}`}
+                    alt="Breed reference image"
                   />
                   <div className="most-searched-breeds__breed__name">
                     {breed.breedName}

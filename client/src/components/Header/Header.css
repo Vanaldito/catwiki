@@ -63,14 +63,14 @@
 
 .header__most-searched-breeds__see-more {
   font-size: 18px;
-  color: #29150799;
+  color: #291507a3;
   text-decoration: none;
   display: inline-block;
   margin-top: 10px;
 }
 
 .header__most-searched-breeds__see-more:hover {
-  color: #291507cc;
+  color: #291507ec;
 }
 
 .header__most-searched-breeds__breeds {
