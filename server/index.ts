@@ -58,7 +58,7 @@ async function main() {
       .sendFile(path.join(__dirname, process.env.VEREX_HTML_PATH as string));
   });
 
-  const PORT = 5000;
+  const { PORT = 5000 } = process.env;
 
   app.listen(PORT, () => {
     console.log();
